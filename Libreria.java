@@ -43,8 +43,9 @@ public class Libreria {
     
     public void agregarTolibreria(ArrayList<Libro> libros){
         for(int i = 0; i<this.libreria.size(); i++)
-            for(int j = 0 ;j<this.libreria.get(i).length;j++)
-                libreria.get(i)[j] = libros.get(i);
+            for(int j = 0 ;j<this.libreria.get(i).length;j++){
+                libreria.get(i)[j] = libros.get(j);
+            }
     }
     
      //Ordenan los LibrosAsignados y luego los ponen en las librerias.
@@ -60,12 +61,14 @@ public class Libreria {
         
         for(int i = 0; i<titulos.size(); i++)
             for(int j = 0; j<titulos.size() ;j++)
-                if(titulos.get(i).equals(this.librosAsignados.get(j).getTitulo()))
+                if(titulos.get(i).equals(this.librosAsignados.get(j).getTitulo())){
                     librosOrdenados.add(this.librosAsignados.get(j));
+                    break;
+                }
         
         this.librosAsignados = librosOrdenados;
         
-        agregarTolibreria(this.librosAsignados);
+        agregarTolibreria(librosOrdenados);
     }
     public void ordenarPorAutor(){
         ArrayList<String> autores = new ArrayList<String>();
@@ -78,13 +81,29 @@ public class Libreria {
   
         for(int i = 0; i<autores.size(); i++)
             for(int j = 0; j<autores.size() ;j++)
-                if(autores.get(i).equals(this.librosAsignados.get(j).getAutor()))
+                if(autores.get(i).equals(this.librosAsignados.get(j).getAutor())){
                     librosOrdenados.add(this.librosAsignados.get(j));
+                    break;
+                }
         
         this.librosAsignados = librosOrdenados;
         
         agregarTolibreria(this.librosAsignados);
     }
+    
+    public void clasificarPorGenero(){
+        ArrayList<String> generos = new ArrayList<>();
+        ArrayList<Libro> librosOrdenados = new ArrayList<>();
+         
+        for(int i = 0; i<this.librosAsignados.size();i++)
+            generos.add(this.librosAsignados.get(i).getGenero());
+            
+            Collections.sort(generos);
+                
+            
+    }
+    
+    
     
     
     
