@@ -23,18 +23,18 @@ public class Principal {
 
        libreria.AsignarLibros("a", "f", "f");
 
-       libreria.AsignarLibros("f", "b", "c");
+       libreria.AsignarLibros("f", "b", "x");
 
-       libreria.AsignarLibros("g", "h", "c");
+       libreria.AsignarLibros("g", "h", "m");
 
-       libreria.AsignarLibros("h", "g", "d");
+       libreria.AsignarLibros("h", "g", "j");
        
-       libreria.AsignarLibros("h", "g", "d");
+       libreria.AsignarLibros("h", "g", "z");
        
-       libreria.AsignarLibros("h", "g", "d");
+       libreria.AsignarLibros("h", "g", "a");
 
 
-       libreria.ordenarPorTitulo();
+       libreria.clasificarPorGenero();
 
        System.out.println(libreria.mostrarLibreria());
 

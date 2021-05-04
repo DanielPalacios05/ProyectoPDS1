@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 public class Libreria {
     public static ArrayList<Libreria> libreriasCreadas;
-    private static int numLibrerias = 0;
+    private static int numLibrerias = 0; 
     
     
     private String nombre;
     private int cantidadDeLibrosMaxima = 0;
     private ArrayList<Libro[]> libreria;
     private ArrayList<Libro> librosAsignados;
+    private int cantidadDeEspacios; // MODIFICAR EL DIAGRAMA DE CLASEs CON EL ATRIBUTO CANTIDAD DE ESPACIOS
     
     // Methods
     
@@ -25,6 +26,7 @@ public class Libreria {
     public void crearEspacioDeLibreria(int cantidadMaxima){
         this.libreria.add(new Libro[cantidadMaxima]);
         this.cantidadDeLibrosMaxima += cantidadMaxima;
+        this.cantidadDeEspacios++;
     }
     public void AsignarLibros(String titulo, String autor, String genero){
            this.librosAsignados.add(new Libro(titulo, autor, genero));
@@ -41,9 +43,15 @@ public class Libreria {
         return libreria;
     }
     
+    public String toStringLibreria(){
+        String info = this.nombre +"\nCantidad de espacios" + this.cantidadDeEspacios; 
+        
+        return info;
+    }
+    
     public void agregarTolibreria(ArrayList<Libro> libros){
         for(int i = 0; i<this.libreria.size(); i++)
-            for(int j = 0 ;j<this.libreria.get(i).length;j++){
+            for(int j = 0 ;j<this.libreria.get(i).length;j++){     // CUANDO HAY MENOS LIBROS QUE LA CANTIDAD MAXIMA DE LIBROS QUE PUEDE HABER EN UN ESPACIO, DA UN ERROR 
                 libreria.get(i)[j] = libros.get(j);
             }
     }
@@ -100,12 +108,15 @@ public class Libreria {
             
             Collections.sort(generos);
                 
-            
+           for(int i = 0; i<generos.size(); i++)
+            for(int j = 0; j<generos.size() ;j++)
+                if(generos.get(i).equals(this.librosAsignados.get(j).getGenero())){
+                    librosOrdenados.add(this.librosAsignados.get(j));
+                    break;
+                }
+           this.librosAsignados = librosOrdenados;
+        
+           agregarTolibreria(this.librosAsignados);
     }
-    
-    
-    
-    
-    
     
 }
