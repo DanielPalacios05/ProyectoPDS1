@@ -28,7 +28,7 @@ public class Libro {
         return this.genero;
     }
     public String toString(){
-        String texto = this.titulo+" "+this.autor+" "+this.genero;
+        String texto = "Titulo: " + this.titulo + "\n" + "Autor: " + this.autor + "\n" + "Genero: " + this.genero + "\n"; 
         return texto;
     }
 }

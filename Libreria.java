@@ -36,15 +36,25 @@ public class Libreria {
         String libreria = this.nombre + ": ";
         
         for(int i = 0; i<this.libreria.size();i++){
-            libreria += "\n" + "espacio "+  i+1 +"\n";
+            libreria += "\n" + "Espacio "+  i+1 +"\n";
             for(int j = 0;j<this.libreria.get(i).length;j++)
                 libreria += "\n" + this.libreria.get(i)[j].toString() + "\n";
         }
         return libreria;
     }
     
+    public String mostrarLibrosAsignados(){
+        String info = "";
+        
+        for(int i = 0; i<librosAsignados.size();i++)
+            info += "("+ (i+1) + ")\n" + librosAsignados.get(i).toString() + "\n";
+      
+        
+        return info;
+    }
+    
     public String toStringLibreria(){
-        String info = this.nombre +"\nCantidad de espacios" + this.cantidadDeEspacios; 
+        String info = this.nombre +"\nCantidad de espacios: " + this.cantidadDeEspacios; 
         
         return info;
     }
@@ -118,5 +128,12 @@ public class Libreria {
         
            agregarTolibreria(this.librosAsignados);
     }
+    
+    public void borrarLibro(int indiceLibro){
+        
+       this.librosAsignados.remove(indiceLibro-1);
+    }
+    
+    
     
 }
