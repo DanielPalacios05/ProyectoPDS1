@@ -9,44 +9,37 @@ public class Principal {
         
 
 
-       Libreria libreria = new Libreria("Hola");     
-
+       Libreria libreria = new Libreria("Hola1");     
+       Libreria libreria2 = new Libreria("Hola2");
+       Libreria libreria3 = new Libreria("Hola3");
        libreria.crearEspacioDeLibreria(10); 
+       libreria2.crearEspacioDeLibreria(2);
+       libreria3.crearEspacioDeLibreria(31);
+       libreria3.crearEspacioDeLibreria(31);
+       libreria3.crearEspacioDeLibreria(31);
+       
+       
+       System.out.println(Libreria.mostrarLibrerias());
+       
+       
+       System.out.println(Libreria.mostrarLibrerias());
+       
+       libreria.AsignarLibros("g", "b", "c");
+       libreria.AsignarLibros("g", "b", "c");
+       
+       libreria.ModificarTitulo(2, "arroz con queso");
+       libreria.ModificarAutor(2,"KANYE WEST");
+       libreria.ModificarGenero(2, "cocina");
 
        libreria.AsignarLibros("g", "b", "c");
-
-       libreria.AsignarLibros("h", "b", "f");
-
-       libreria.AsignarLibros("b", "d", "c");
-
-       libreria.AsignarLibros("f", "s", "c");
-
-       libreria.AsignarLibros("a", "f", "f");
-
-       libreria.AsignarLibros("n", "b", "x");
-
-       libreria.AsignarLibros("g", "h", "m");
-
-       libreria.AsignarLibros("h", "g", "j");
        
-       libreria.AsignarLibros("h", "g", "z");
-       
+       libreria.borrarLibro(2);
 
 
 
        libreria.ordenarPorTitulo();
 
        System.out.println(libreria.mostrarLibreria());
-       
-       System.out.println(libreria.toStringLibreria());
-
-
-        
-        System.out.println(libreria.mostrarLibrosAsignados());
-        
-        
-        
-        System.out.println(libreria.mostrarLibrosAsignados());
  
     }
     

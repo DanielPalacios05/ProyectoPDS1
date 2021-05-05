@@ -4,7 +4,7 @@ package package1;
 import java.util.ArrayList;
 import java.util.Collections;
 public class Libreria {
-    public static ArrayList<Libreria> libreriasCreadas;
+    public static ArrayList<Libreria> libreriasCreadas = new ArrayList<>();
     private static int numLibrerias = 0; 
     
     
@@ -17,10 +17,20 @@ public class Libreria {
     // Methods
     
     public Libreria(String name){
+        libreriasCreadas.add(this);
         this.libreria = new ArrayList<>();
         this.librosAsignados = new ArrayList<>();
         this.nombre = name;
         this.numLibrerias++;
+    }
+    
+    public static String mostrarLibrerias(){
+        String librerias = "";
+     
+        for(int i = 0; i<libreriasCreadas.size();i++)
+            librerias += "(" + (i+1) + ")\n" + libreriasCreadas.get(i).toStringLibreria() + "\n";
+        
+        return librerias;
     }
     
     public void crearEspacioDeLibreria(int cantidadMaxima){
@@ -136,6 +146,18 @@ public class Libreria {
        this.librosAsignados.remove(indiceLibro-1);
     }
     
+    public void ModificarTitulo(int indiceLibro, String modificar){
+        this.librosAsignados.get(indiceLibro-1).setTitulo(modificar);
+    }
+    public void ModificarAutor(int indiceLibro, String modificar){
+        this.librosAsignados.get(indiceLibro-1).setAutor(modificar);
+    }
+    public void ModificarGenero(int indiceLibro, String modificar){
+        this.librosAsignados.get(indiceLibro-1).setGenero(modificar);
+    }
     
     
+    public static void borrarLibreria(int indiceLibreria){
+        libreriasCreadas.remove(indiceLibreria-1);
+    }
 }

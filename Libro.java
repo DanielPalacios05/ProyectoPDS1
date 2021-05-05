@@ -13,20 +13,27 @@ public class Libro {
         this.genero = genero;
     }
     public void setTitulo(String s){
+        this.titulo = s;
     }
     public void setAutor(String s){
+        this.autor = s;
     }
     public void setGenero(String s){
+        this.genero = s;
     }
+    
     public String getTitulo(){
         return this.titulo;
     }
+    
     public String getAutor(){
         return this.autor;
     }
+    
     public String getGenero(){
         return this.genero;
     }
+    
     public String toString(){
         String texto = "Titulo: " + this.titulo + "\n" + "Autor: " + this.autor + "\n" + "Genero: " + this.genero + "\n"; 
         return texto;
