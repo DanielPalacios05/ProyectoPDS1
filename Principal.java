@@ -19,10 +19,7 @@ public class Principal {
        libreria3.crearEspacioDeLibreria(31);
        
        
-       System.out.println(Libreria.mostrarLibrerias());
-       
-       
-       System.out.println(Libreria.mostrarLibrerias());
+
        
        libreria.AsignarLibros("g", "b", "c");
        libreria.AsignarLibros("g", "b", "c");
@@ -31,15 +28,27 @@ public class Principal {
        libreria.ModificarAutor(2,"KANYE WEST");
        libreria.ModificarGenero(2, "cocina");
 
-       libreria.AsignarLibros("g", "b", "c");
+       libreria.AsignarLibros("dopeboy", "damnbitch", "dfuck");
        
-       libreria.borrarLibro(2);
+       libreria.AsignarLibros("Daniel", "Ricardo", "Palacios");
+       
+       libreria.AsignarLibros("La voragine", "Niggapoop", "cocaine");
+       
+       libreria.AsignarLibros("daniellesabemanitojjaja", "b", "c");
+       
+       libreria.AsignarLibros("paola", "prato", "apratot");
+       
+ 
+      libreria.ordenarPorTitulo();
+      
+      System.out.println(libreria.buscarLibro(""));
+       
 
 
 
-       libreria.ordenarPorTitulo();
+       
 
-       System.out.println(libreria.mostrarLibreria());
+      
  
     }
     

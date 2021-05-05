@@ -156,7 +156,26 @@ public class Libreria {
         this.librosAsignados.get(indiceLibro-1).setGenero(modificar);
     }
     
-    
+    public String buscarLibro(String buscar){
+        String resultado = "";
+        String buscado = buscar.toLowerCase();
+        
+        if(buscar != "")
+            for(int i = 0; i < this.libreria.size() ;i++)
+                for(int j = 0 ;j < this.libreria.get(i).length ;j++)
+                    if(this.libreria.get(i)[j] != null)
+                        if(this.libreria.get(i)[j].getTitulo().toLowerCase().contains(buscado))
+                            resultado += "\nEspacio:" + (i+1) + "\n\n" + "(" + (j+1) + ")\n" + this.libreria.get(i)[j].toString();
+                        else if(this.libreria.get(i)[j].getAutor().toLowerCase().contains(buscado))
+                            resultado += "\nEspacio:" + (i+1) + "\n\n" + "(" + (j+1) + ")\n" + this.libreria.get(i)[j].toString();
+                        else if(this.libreria.get(i)[j].getGenero().toLowerCase().contains(buscado))
+                            resultado += "\nEspacio:" + (i+1) + "\n\n" + "(" + (j+1) + ")\n" + this.libreria.get(i)[j].toString();
+        
+        if(resultado == "")
+            resultado = "No hay coincidecias";
+        
+        return resultado;                       
+    }
     public static void borrarLibreria(int indiceLibreria){
         libreriasCreadas.remove(indiceLibreria-1);
     }
