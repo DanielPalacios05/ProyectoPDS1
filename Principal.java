@@ -31,11 +31,7 @@ public class Principal {
        
        libreria.AsignarLibros("h", "g", "z");
        
-       libreria.AsignarLibros("h", "g", "a");
-       
-       libreria.AsignarLibros("h", "g", "a");
-       
-       libreria.borrarLibro(11);
+
 
 
        libreria.ordenarPorTitulo();
