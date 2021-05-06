@@ -15,7 +15,7 @@ public class Principal {
             num = sc.nextInt();
             flag = false;
         } catch (Exception e) {
-            System.out.println("fake");
+            System.out.println("El valor introducido es invalido");
             sc.next();
             continue;
         }
@@ -67,7 +67,8 @@ public class Principal {
                                             
                                                0. Salir del Programa
                                                1. Crear nueva Libreria
-                                               2. Administrar Libreria
+                                               2. Administrar Librerias
+                                               3. Ver librerias.
                                             
                                             -----------------------------------------------""";
 
@@ -116,13 +117,31 @@ public class Principal {
                 
                 break;
 
+            case 3: // Ver librerias.
+                System.out.println("\n"+Libreria.mostrarLibrerias());
+                System.out.println("\nSeleccion la libreria que quiere ver, digite un numero negativo para salir");
+
+                    // Try catch para que no salga EL INNOMBRABLE arrayIndexOutOfBounds al escoger un numero de una libreria que no existe.
+                    int opcion3 = scanInt();
+                    while(opcion3 != -1){
+                        opcion3 = scanInt();
+                        try{
+                        System.out.println(Libreria.libreriasCreadas.get(opcion3-1).mostrarLibreria());
+                    }catch(Exception e){
+                        System.out.println("No existe tal libreria, porfavor ingrese un numero valido");
+                        continue;
+                    }
+                }
+                break;
+                
+
             default:
                 System.out.println("Comando incorrecto");
                 break;
 
         }
 
-            System.out.println("Eliga una opcion:"); 
+            System.out.println("\nEliga una opcion:"); 
             opcion1 = scanInt();
 
        }
