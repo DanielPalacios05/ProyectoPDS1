@@ -17,11 +17,10 @@ public class Libreria {
     // Methods
     
     public Libreria(String name){
-        libreriasCreadas.add(this);
         this.libreria = new ArrayList<>();
         this.librosAsignados = new ArrayList<>();
         this.nombre = name;
-        this.numLibrerias++;
+        numLibrerias++;
     }
     
     public void crearEspacioDeLibreria(int cantidadMaxima){
