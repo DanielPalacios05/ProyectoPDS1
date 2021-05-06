@@ -24,6 +24,24 @@ public class Libreria {
         this.numLibrerias++;
     }
     
+    public void crearEspacioDeLibreria(int cantidadMaxima){
+        this.libreria.add(new Libro[cantidadMaxima]);
+        this.cantidadDeLibrosMaxima += cantidadMaxima;
+        this.cantidadDeEspacios++;
+    }
+    
+    public void AsignarLibros(String titulo, String autor, String genero){
+           this.librosAsignados.add(new Libro(titulo, autor, genero));
+    }
+    
+    public void agregarTolibreria(ArrayList<Libro> libros){
+        for(int i = 0; i<this.libreria.size(); i++)
+            for(int j = 0 ;j<libros.size();j++){     // CUANDO HAY MENOS LIBROS QUE LA CANTIDAD MAXIMA DE LIBROS QUE PUEDE HABER EN UN ESPACIO, DA UN ERROR 
+                libreria.get(i)[j] = libros.get(j);
+            }
+    }
+    
+    
     public static String mostrarLibrerias(){
         String librerias = "";
      
@@ -31,15 +49,6 @@ public class Libreria {
             librerias += "(" + (i+1) + ")\n" + libreriasCreadas.get(i).toStringLibreria() + "\n";
         
         return librerias;
-    }
-    
-    public void crearEspacioDeLibreria(int cantidadMaxima){
-        this.libreria.add(new Libro[cantidadMaxima]);
-        this.cantidadDeLibrosMaxima += cantidadMaxima;
-        this.cantidadDeEspacios++;
-    }
-    public void AsignarLibros(String titulo, String autor, String genero){
-           this.librosAsignados.add(new Libro(titulo, autor, genero));
     }
     
     public String mostrarLibreria(){
@@ -71,12 +80,7 @@ public class Libreria {
         return info;
     }
     
-    public void agregarTolibreria(ArrayList<Libro> libros){
-        for(int i = 0; i<this.libreria.size(); i++)
-            for(int j = 0 ;j<libros.size();j++){     // CUANDO HAY MENOS LIBROS QUE LA CANTIDAD MAXIMA DE LIBROS QUE PUEDE HABER EN UN ESPACIO, DA UN ERROR 
-                libreria.get(i)[j] = libros.get(j);
-            }
-    }
+    
     
      //Ordenan los LibrosAsignados y luego los ponen en las librerias.
     
@@ -100,6 +104,7 @@ public class Libreria {
         
         agregarTolibreria(librosOrdenados);
     }
+    
     public void ordenarPorAutor(){
         ArrayList<String> autores = new ArrayList<String>();
         ArrayList<Libro> librosOrdenados = new ArrayList<Libro>();
@@ -141,20 +146,21 @@ public class Libreria {
            agregarTolibreria(this.librosAsignados);
     }
     
-    public void borrarLibro(int indiceLibro){
-        
-       this.librosAsignados.remove(indiceLibro-1);
-    }
+    
     
     public void ModificarTitulo(int indiceLibro, String modificar){
         this.librosAsignados.get(indiceLibro-1).setTitulo(modificar);
     }
+    
     public void ModificarAutor(int indiceLibro, String modificar){
         this.librosAsignados.get(indiceLibro-1).setAutor(modificar);
     }
+    
     public void ModificarGenero(int indiceLibro, String modificar){
         this.librosAsignados.get(indiceLibro-1).setGenero(modificar);
     }
+    
+    
     
     public String buscarLibro(String buscar){
         String resultado = "";
@@ -175,6 +181,12 @@ public class Libreria {
             resultado = "No hay coincidecias";
         
         return resultado;                       
+    }
+    
+    
+    public void borrarLibro(int indiceLibro){
+        
+       this.librosAsignados.remove(indiceLibro-1);
     }
     public static void borrarLibreria(int indiceLibreria){
         libreriasCreadas.remove(indiceLibreria-1);
