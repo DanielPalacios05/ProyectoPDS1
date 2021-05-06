@@ -15,6 +15,10 @@ public class Libreria {
     private int cantidadDeEspacios; // MODIFICAR EL DIAGRAMA DE CLASEs CON EL ATRIBUTO CANTIDAD DE ESPACIOS
     
     // Methods
+
+    public int getCantidadDelibrosMaxima(){
+        return this.cantidadDeLibrosMaxima;
+    }
     
     public Libreria(String name){
         this.libreria = new ArrayList<>();

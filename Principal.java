@@ -25,13 +25,64 @@ public class Principal {
     }
     
     
-    public static void administrarLibreria(int libreria){
-        
-        
-        
-        
+    public  static void administrarLibreria(){
+        System.out.println(Libreria.mostrarLibrerias());
+        int libreria = 0;
+
+        System.out.println("A que libreria desea entrar? pulsar un numero negativo para salir\n");
+
+        do{  // Seccion para elegir libreria
+            try{
+                libreria = scanInt();
+                System.out.println("\nModificando libreria: " + Libreria.libreriasCreadas.get(libreria-1).toStringLibreria() + "\n");
+                break;
+            }
+            catch (Exception e) {
+
+                if(libreria < 0){
+                    System.out.println("Saliendo de administar librerias...");
+                    break;
+                }
+
+                System.out.println("No existe tal libreria, porfavor ingrese un numero valido");
+                continue;
+            }
+        }while(libreria > 0);
+
+        if(libreria > 0){
+
+            System.out.println("""
+                                Opciones de modificacion de libreria:
+
+                                0. Salir de librerias
+                                1. Asignar libros
+                                2. Ordenar libros por titulo
+                                3. Ordenar libros por autor
+                                4. Ordenar libros por genero
+                                5. Buscar libro
+                                6. Configurar libro""");
+
+            int opciones = scanInt();
+
+            while(opciones != 0){
+
+                switch(opciones){
+
+                    case 0:
+                        System.out.println("Saliendo de modificar libreria");
+                        break;
+                    
+                    case 1:
+                                        
+                }
+            }
+            
+        }
+
+
         
     }
+
     
     public static void main(String[] args) {
         
@@ -80,11 +131,11 @@ public class Principal {
 
         switch (opcion1) {
 
-            case 0:  // SALIR DEL SISTEMA
+            case 0:  // SALIR DEL SISTEMA ready... duh
                 System.out.println("Hasta pronto usuario");
                 break;
 
-            case 1: // CREAR LIBRERIA 
+            case 1: // CREAR LIBRERIA  ready 
                 
                 if(esAdmin){
                     System.out.println("Pongale nombre a la libreria");
@@ -113,28 +164,38 @@ public class Principal {
                     break;
                      
             case 2: // ADMINISTRAR LIBRERIAS
-                System.out.println(Libreria.mostrarLibrerias());
                 
+                if(esAdmin) // Solo los administrador pueden entrar a esta opcion, uso otra vez de el try catch para ArrayIndexOutofBounds
+                    administrarLibreria();
+                else
+                    System.out.println("No se puede acceder a esta opcion");
                 break;
 
-            case 3: // Ver librerias.
+            case 3: // Ver librerias. ready
                 System.out.println("\n"+Libreria.mostrarLibrerias());
                 System.out.println("\nSeleccion la libreria que quiere ver, digite un numero negativo para salir");
 
                     // Try catch para que no salga EL INNOMBRABLE arrayIndexOutOfBounds al escoger un numero de una libreria que no existe.
                     int opcion3 = scanInt();
-                    while(opcion3 != -1){
+
+                    while(opcion3 > 0){
                         opcion3 = scanInt();
                         try{
-                        System.out.println(Libreria.libreriasCreadas.get(opcion3-1).mostrarLibreria());
-                    }catch(Exception e){
-                        System.out.println("No existe tal libreria, porfavor ingrese un numero valido");
-                        continue;
-                    }
-                }
+                            System.out.println(Libreria.libreriasCreadas.get(opcion3-1).mostrarLibreria());
+                        }
+                        catch(Exception e){
+
+                            if(opcion3 < 0){
+                                System.out.println("Saliendo de Ver librerias...");
+                                break;
+                            }
+
+                            System.out.println("No existe tal libreria, porfavor ingrese un numero valido");
+                            continue;
+                        }
+                   }
                 break;
                 
-
             default:
                 System.out.println("Comando incorrecto");
                 break;
