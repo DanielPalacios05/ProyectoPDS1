@@ -4,6 +4,25 @@ package package1;
 import java.util.Scanner;
 
 public class Principal {
+
+    public static int scanInt(){
+        int num = 0;
+        Scanner sc = new Scanner(System.in);
+        boolean flag = true;
+
+        while(flag){
+        try {
+            num = sc.nextInt();
+            flag = false;
+        } catch (Exception e) {
+            System.out.println("fake");
+            sc.next();
+            continue;
+        }
+    }
+    return num;
+
+    }
     
     
     public static void administrarLibreria(int libreria){
@@ -15,20 +34,21 @@ public class Principal {
     }
     
     public static void main(String[] args) {
+        
         String nombre;
-        short Usuario;
+        int Usuario;
         boolean esAdmin = false;
         
         Scanner scan = new Scanner(System.in);
         
         System.out.println("Seleccione usario\n\n" + "1: Usuario administrador\n\n" + "2: Usuario invitado");
         
-        Usuario = scan.nextShort();
+        Usuario = scanInt();
         
         while(Usuario >= 3 || Usuario <= 0){
             System.out.println("Valor incorrecto, eliga solo el 1 o el 2");
               
-            Usuario = scan.nextShort();
+            Usuario = scanInt();
         }
         
         if(Usuario == 1){
@@ -53,7 +73,7 @@ public class Principal {
 
        System.out.println(opcionesDelPrograma);
 
-       int opcion1 = scan.nextInt();
+       int opcion1 = scanInt();
 
        while(opcion1 != 0){
 
@@ -75,14 +95,14 @@ public class Principal {
                     
                     System.out.println("\nCantidad limite de espacio 1" + "Para dejar de crear espacios escriba un numero negativo");
                     
-                    int cantidadLimite = scan.nextInt();
+                    int cantidadLimite = scanInt();
                     int i = 1;
                     
                     while(cantidadLimite > 0){
                         i++;
                         libreria.crearEspacioDeLibreria(cantidadLimite);
                         System.out.println("Cantidad limite de espacio " + i);              // BLOQUE ENCARGADO DE AGREGAR ESPACIOS DE LIBRERIA
-                        cantidadLimite = scan.nextInt();
+                        cantidadLimite = scanInt();
                     }
                     System.out.println("Se han dejado de crear espacios"); 
                         
@@ -102,8 +122,8 @@ public class Principal {
 
         }
 
-        System.out.println("Eliga una opcion:"); 
-        opcion1=scan.nextInt();
+            System.out.println("Eliga una opcion:"); 
+            opcion1 = scanInt();
 
        }
 
