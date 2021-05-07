@@ -165,15 +165,15 @@ public class Libreria {
     
     
     public void ModificarTitulo(int indiceLibro, String modificar){
-        this.librosAsignados.get(indiceLibro-1).setTitulo(modificar);
+        this.librosAsignados.get(indiceLibro).setTitulo(modificar);
     }
     
     public void ModificarAutor(int indiceLibro, String modificar){
-        this.librosAsignados.get(indiceLibro-1).setAutor(modificar);
+        this.librosAsignados.get(indiceLibro).setAutor(modificar);
     }
     
     public void ModificarGenero(int indiceLibro, String modificar){
-        this.librosAsignados.get(indiceLibro-1).setGenero(modificar);
+        this.librosAsignados.get(indiceLibro).setGenero(modificar);
     }
     
     
@@ -202,9 +202,9 @@ public class Libreria {
     
     public void borrarLibro(int indiceLibro){
         
-       this.librosAsignados.remove(indiceLibro-1);
+       this.librosAsignados.remove(indiceLibro);
     }
     public static void borrarLibreria(int indiceLibreria){
-        libreriasCreadas.remove(indiceLibreria-1);
+        libreriasCreadas.remove(indiceLibreria);
     }
 }

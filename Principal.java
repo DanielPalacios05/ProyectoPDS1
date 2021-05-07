@@ -29,7 +29,7 @@ public class Principal {
         boolean librosAsignados = false;
         Scanner scan2 = new Scanner(System.in);
         int cantidad = 0;
-        System.out.println(Libreria.mostrarLibrerias());
+        System.out.println(Libreria.mostrarLibrerias() + "\n");
         int libreria = 0;
 
         System.out.println("A que libreria desea entrar? pulsar un numero negativo para salir\n");
@@ -40,7 +40,7 @@ public class Principal {
                 System.out.println("\nModificando libreria: " + Libreria.libreriasCreadas.get(libreria-1).toStringLibreria() + "\n");
                 break;
             }
-            catch (Exception e) {
+            catch (Exception e){
 
                 if(libreria < 0){
                     System.out.println("Saliendo de administar librerias...");
@@ -54,22 +54,25 @@ public class Principal {
 
         if(libreria > 0){
 
-            System.out.println("""
+            String info = ("""
                                 Opciones de modificacion de libreria:
 
-                                0. Salir de librerias
-                                1. Asignar libros
-                                2. Ordenar libros por titulo
-                                3. Ordenar libros por autor
-                                4. Ordenar libros por genero
-                                5. Buscar libro
-                                6. Configurar libro""");
+                                0. Salir de librerias.
+                                1. Ver libros Asignados
+                                2. Asignar libros.
+                                3. Ordenar libros por titulo.
+                                4. Ordenar libros por autor.
+                                5. Ordenar libros por genero.
+                                6. Buscar libro.
+                                7. Configurar libro.
+                                8. Borrar libreria.""");
 
             int opciones = -1;
 
             while(opciones != 0){
 
                 System.out.println("\nEliga una opcion");
+                System.out.println(info);
                 opciones = scanInt();
 
                 switch(opciones){
@@ -79,6 +82,10 @@ public class Principal {
                         break;
                     
                     case 1:
+                        System.out.println(Libreria.libreriasCreadas.get(libreria-1).mostrarLibrosAsignados());
+                        break;
+                    
+                    case 2:
 
                         while(cantidad < Libreria.libreriasCreadas.get(libreria-1).getCantidadDelibrosMaxima()){
                             String titulo,autor,genero,respuesta;
@@ -117,7 +124,7 @@ public class Principal {
                         
                         break;
 
-                    case 2:
+                    case 3:
 
                         if(librosAsignados){
                             Libreria.libreriasCreadas.get(libreria-1).ordenarPorTitulo();
@@ -129,7 +136,7 @@ public class Principal {
 
                         break;
                         
-                    case 3:
+                    case 4:
 
                          if(librosAsignados){
                             Libreria.libreriasCreadas.get(libreria-1).ordenarPorAutor();
@@ -140,7 +147,7 @@ public class Principal {
 
                         break;
                         
-                    case 4:
+                    case 5:
 
                          if(librosAsignados){
                             Libreria.libreriasCreadas.get(libreria-1).clasificarPorGenero();
@@ -152,20 +159,25 @@ public class Principal {
                         break;
 
                     
-                     case 5:
+                     case 6:
                             System.out.println("Ingrese una palabra clave");
                                 String palabraClave = scan2.next();
 
                            System.out.println(Libreria.libreriasCreadas.get(libreria-1).buscarLibro(palabraClave));
                            break;
                         
-                     case 6:
+                     case 7:
 
                             if(librosAsignados){
                                 System.out.println(Libreria.libreriasCreadas.get(libreria-1).mostrarLibrosAsignados());
                                 administarLibro(libreria-1);
                             }
                             break;
+
+                    case 8:
+                            Libreria.borrarLibreria(libreria-1);
+                            System.out.println("Se ha borrado la libreria exitosamente");
+                            opciones = 0;
 
                     default:
                             System.out.println("Comando Incorrecto");
@@ -194,8 +206,8 @@ public class Principal {
                              0. Salir del libro 
                              1. Modificar titulo
                              2. Modificar autor
-                             3. Modificar generos
-                             4. modificar libro
+                             3. Modificar genero
+                             4. Borrar libro
                              -------------------------------------- """);
         int menu = -1;
 
@@ -210,11 +222,39 @@ public class Principal {
                 break;
             
             case 1:
+                System.out.println("Ingrese el titulo");
+                String titulo = scan3.next();
 
+                Libreria.libreriasCreadas.get(libreria).ModificarTitulo(libro, titulo);
+                System.out.println("Titulo modificado");
+                break;
 
-        }
+            case 2:
+                System.out.println("Ingrese el autor");
+                String autor = scan3.next();
 
+                Libreria.libreriasCreadas.get(libreria).ModificarAutor(libro, autor);
+                System.out.println("Autor modificado");
+                break;
 
+            case 3:
+                System.out.println("Ingrese el genero");
+                String genero = scan3.next();
+
+                Libreria.libreriasCreadas.get(libreria).ModificarGenero(libro, genero);
+                System.out.println("Genero modificado");
+                break;
+
+            case 4:
+                Libreria.libreriasCreadas.get(libreria).borrarLibro(libro);
+                System.out.println("Libro borrado exitosamente");
+                menu = 0;
+                break;
+                
+            default:
+                System.out.println("Comando incorrecto, ingrese un numero valido");
+                break;
+             }
 
        }
     }
@@ -283,7 +323,7 @@ public class Principal {
                     Libreria.libreriasCreadas.add(libreria);
                     
                     
-                    System.out.println("\nCantidad limite de espacio 1" + "Para dejar de crear espacios escriba un numero negativo");
+                    System.out.println("\nCantidad limite de espacio 1\n\n" + "Para dejar de crear espacios escriba un numero negativo");
                     
                     int cantidadLimite = scanInt();
                     int i = 1;
