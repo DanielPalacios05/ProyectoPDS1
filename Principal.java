@@ -3,7 +3,6 @@ package package1;
 
 import java.util.Scanner;
 
-import javax.lang.model.util.ElementScanner14;
 
 public class Principal {
 
@@ -161,7 +160,11 @@ public class Principal {
                            break;
                         
                      case 6:
-                            System.out.println("working progress");
+
+                            if(librosAsignados){
+                                System.out.println(Libreria.libreriasCreadas.get(libreria-1).mostrarLibrosAsignados());
+                                administarLibro(libreria-1);
+                            }
                             break;
 
                     default:
@@ -172,11 +175,49 @@ public class Principal {
                 
                 }
             }
-            
+             
         }
         
     }
 
+    public static void administarLibro(int libreria){
+        Scanner scan3 = new Scanner(System.in);
+
+        System.out.println("Seleccionar libro");
+        int libro = scanInt()-1;
+
+        System.out.println("""
+                            
+                            ----------------------------------------
+                             Opciones de libro:
+                             
+                             0. Salir del libro 
+                             1. Modificar titulo
+                             2. Modificar autor
+                             3. Modificar generos
+                             4. modificar libro
+                             -------------------------------------- """);
+        int menu = -1;
+
+       while(menu != 0){
+
+        System.out.println("Que desea hacer?");
+        menu = scanInt();
+
+        switch(menu){
+            case 0:
+                System.out.println("Saliendo del libro...");
+                break;
+            
+            case 1:
+
+
+        }
+
+
+
+       }
+    }
     
     public static void main(String[] args) {
         

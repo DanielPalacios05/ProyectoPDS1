@@ -38,10 +38,23 @@ public class Libreria {
     }
     
     public void agregarTolibreria(ArrayList<Libro> libros){
-        for(int i = 0; i<this.libreria.size(); i++)
-            for(int j = 0 ;j<libros.size();j++){     // CUANDO HAY MENOS LIBROS QUE LA CANTIDAD MAXIMA DE LIBROS QUE PUEDE HABER EN UN ESPACIO, DA UN ERROR 
-                libreria.get(i)[j] = libros.get(j);
+        int j = 0;
+        int indice = 0;
+
+        for(int i = 0; i<this.libreria.size(); i++){
+            while(indice < this.libreria.get(i).length){
+               try{
+                   this.libreria.get(i)[indice] = libros.get(j);
+                    j++;
+                    indice++;
+                }catch (Exception e) {
+                    break;
+                }
+
+                 
             }
+            indice = 0;
+        }
     }
     
     
@@ -58,7 +71,7 @@ public class Libreria {
         String libreria = this.nombre + ": ";
         
         for(int i = 0; i<this.libreria.size();i++){
-            libreria += "\n" + "Espacio "+  i+1 +"\n";
+            libreria += "\n" + "Espacio "+  (i+1) +"\n";
             for(int j = 0;j<this.libreria.get(i).length;j++){
                 if(this.libreria.get(i)[j] != null)
                     libreria += "\n" + this.libreria.get(i)[j].toString() + "\n";
