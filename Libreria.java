@@ -16,7 +16,7 @@ public class Libreria {
     
     // Methods
 
-    public int getCantidadDelibrosMaxima(){
+    public int getCantidadDelibrosMaxima(){ //Poner en diagrama de clases
         return this.cantidadDeLibrosMaxima;
     }
     

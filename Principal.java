@@ -3,6 +3,8 @@ package package1;
 
 import java.util.Scanner;
 
+import javax.lang.model.util.ElementScanner14;
+
 public class Principal {
 
     public static int scanInt(){
@@ -21,11 +23,13 @@ public class Principal {
         }
     }
     return num;
-
     }
     
     
     public  static void administrarLibreria(){
+        boolean librosAsignados = false;
+        Scanner scan2 = new Scanner(System.in);
+        int cantidad = 0;
         System.out.println(Libreria.mostrarLibrerias());
         int libreria = 0;
 
@@ -62,9 +66,12 @@ public class Principal {
                                 5. Buscar libro
                                 6. Configurar libro""");
 
-            int opciones = scanInt();
+            int opciones = -1;
 
             while(opciones != 0){
+
+                System.out.println("\nEliga una opcion");
+                opciones = scanInt();
 
                 switch(opciones){
 
@@ -73,13 +80,100 @@ public class Principal {
                         break;
                     
                     case 1:
-                                        
+
+                        while(cantidad < Libreria.libreriasCreadas.get(libreria-1).getCantidadDelibrosMaxima()){
+                            String titulo,autor,genero,respuesta;
+
+                            System.out.println("Ingrese titulo");
+                            titulo = scan2.next();
+
+                            System.out.println("Ingrese autor");
+                            autor = scan2.next();
+
+                            System.out.println("Ingrese genero");
+                            genero = scan2.next();
+
+                            Libreria.libreriasCreadas.get(libreria-1).AsignarLibros(titulo, autor, genero);
+
+                            cantidad++;
+
+                            System.out.println("Desea añadir mas libros?\n" + "Y/N"); 
+
+                            respuesta = scan2.next();
+
+                            while(!respuesta.equalsIgnoreCase("Y") && !respuesta.equalsIgnoreCase("N")){
+                                System.out.println("Respuesta invalida ponga solo Y o N");
+                                respuesta = scan2.next();
+                            }
+
+                            if(respuesta.equalsIgnoreCase("N"))
+                                 break;
+                        }
+
+                        if(cantidad == Libreria.libreriasCreadas.get(libreria-1).getCantidadDelibrosMaxima()){
+                            System.out.println("Se alcanzo la cantidad maxima de libros que puede tener la libreria");
+                        }
+
+                        librosAsignados = true;
+                        
+                        break;
+
+                    case 2:
+
+                        if(librosAsignados){
+                            Libreria.libreriasCreadas.get(libreria-1).ordenarPorTitulo();
+                            System.out.println("Los libros han sido asignados a la libreria");
+                            break;
+                        }
+                        else
+                            System.out.println("No se han asignado libros todavia");
+
+                        break;
+                        
+                    case 3:
+
+                         if(librosAsignados){
+                            Libreria.libreriasCreadas.get(libreria-1).ordenarPorAutor();
+                            System.out.println("Los libros han sido asignados a la libreria");
+                            }
+                        else
+                           System.out.println("No se han asignado libros todavia");
+
+                        break;
+                        
+                    case 4:
+
+                         if(librosAsignados){
+                            Libreria.libreriasCreadas.get(libreria-1).clasificarPorGenero();
+                            System.out.println("Los libros han sido asignados a la libreria");
+                            }
+                            else
+                                System.out.println("No se han asignado libros todavia");
+
+                        break;
+
+                    
+                     case 5:
+                            System.out.println("Ingrese una palabra clave");
+                                String palabraClave = scan2.next();
+
+                           System.out.println(Libreria.libreriasCreadas.get(libreria-1).buscarLibro(palabraClave));
+                           break;
+                        
+                     case 6:
+                            System.out.println("working progress");
+                            break;
+
+                    default:
+                            System.out.println("Comando Incorrecto");
+                            break;
+                            
+                                
+                
                 }
             }
             
         }
-
-
         
     }
 
@@ -125,9 +219,12 @@ public class Principal {
 
        System.out.println(opcionesDelPrograma);
 
-       int opcion1 = scanInt();
+       int opcion1 = -1;
 
        while(opcion1 != 0){
+
+        System.out.println("\nEliga una opcion:"); 
+        opcion1 = scanInt();
 
         switch (opcion1) {
 
@@ -202,8 +299,6 @@ public class Principal {
 
         }
 
-            System.out.println("\nEliga una opcion:"); 
-            opcion1 = scanInt();
 
        }
 
