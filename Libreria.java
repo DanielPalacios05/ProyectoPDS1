@@ -12,19 +12,21 @@ public class Libreria {
     private int cantidadDeLibrosMaxima = 0;
     private ArrayList<Libro[]> libreria;
     private ArrayList<Libro> librosAsignados;
-    private int cantidadDeEspacios; // MODIFICAR EL DIAGRAMA DE CLASEs CON EL ATRIBUTO CANTIDAD DE ESPACIOS
+    private int cantidadDeEspacios; 
     
     // Methods
 
-    public int getCantidadDelibrosMaxima(){ //Poner en diagrama de clases
-        return this.cantidadDeLibrosMaxima;
-    }
+
     
     public Libreria(String name){
         this.libreria = new ArrayList<>();
         this.librosAsignados = new ArrayList<>();
         this.nombre = name;
         numLibrerias++;
+    }
+
+    public int getCantidadDelibrosMaxima(){ //Poner en diagrama de clases
+        return this.cantidadDeLibrosMaxima;
     }
     
     public void crearEspacioDeLibreria(int cantidadMaxima){
@@ -71,7 +73,7 @@ public class Libreria {
         String libreria = this.nombre + ": ";
         
         for(int i = 0; i<this.libreria.size();i++){
-            libreria += "\n" + "Espacio "+  (i+1) +"\n";
+            libreria += "\n" + "\nEspacio "+  (i+1) +"\n";
             for(int j = 0;j<this.libreria.get(i).length;j++){
                 if(this.libreria.get(i)[j] != null)
                     libreria += "\n" + this.libreria.get(i)[j].toString() + "\n";
@@ -187,7 +189,7 @@ public class Libreria {
                 for(int j = 0 ;j < this.libreria.get(i).length ;j++)
                     if(this.libreria.get(i)[j] != null)
                         if(this.libreria.get(i)[j].getTitulo().toLowerCase().contains(buscado))
-                            resultado += "\nEspacio:" + (i+1) + "\n\n" + "(" + (j+1) + ")\n" + this.libreria.get(i)[j].toString();
+                            resultado += "\nEspacio:" + (i+1) + "\n\n" + "(" + (j+1) + ")\n" + this.libreria.get(i)[j].toString();  // Se ingresa una palabra clave y va comparando con cada dato de libro
                         else if(this.libreria.get(i)[j].getAutor().toLowerCase().contains(buscado))
                             resultado += "\nEspacio:" + (i+1) + "\n\n" + "(" + (j+1) + ")\n" + this.libreria.get(i)[j].toString();
                         else if(this.libreria.get(i)[j].getGenero().toLowerCase().contains(buscado))

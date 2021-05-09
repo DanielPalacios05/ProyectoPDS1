@@ -29,10 +29,10 @@ public class Principal {
         boolean librosAsignados = false;
         Scanner scan2 = new Scanner(System.in);
         int cantidad = 0;
-        System.out.println(Libreria.mostrarLibrerias() + "\n");
+        System.out.println("\n" + Libreria.mostrarLibrerias() + "\n");
         int libreria = 0;
 
-        System.out.println("A que libreria desea entrar? pulsar un numero negativo para salir\n");
+        System.out.print("A que libreria desea entrar? pulsar 0 para salir: ");
 
         do{  // Seccion para elegir libreria
             try{
@@ -42,7 +42,7 @@ public class Principal {
             }
             catch (Exception e){
 
-                if(libreria < 0){
+                if(libreria == 0){
                     System.out.println("Saliendo de administar librerias...");
                     break;
                 }
@@ -54,7 +54,7 @@ public class Principal {
 
         if(libreria > 0){
 
-            String info = ("""
+            System.out.println("""
                                 Opciones de modificacion de libreria:
 
                                 0. Salir de librerias.
@@ -71,8 +71,8 @@ public class Principal {
 
             while(opciones != 0){
 
-                System.out.println("\nEliga una opcion");
-                System.out.println(info);
+
+                System.out.print("\nEliga una opcion de modificacion de libreria: ");
                 opciones = scanInt();
 
                 switch(opciones){
@@ -99,6 +99,11 @@ public class Principal {
                             System.out.println("Ingrese genero");
                             genero = scan2.next();
 
+                            if(titulo == "" || autor == "" || genero == ""){
+                                System.out.println("Datos de libro invalidos, porfavor ingreselos nuevamente");
+                                continue;
+                            }
+
                             Libreria.libreriasCreadas.get(libreria-1).AsignarLibros(titulo, autor, genero);
 
                             cantidad++;
@@ -113,7 +118,7 @@ public class Principal {
                             }
 
                             if(respuesta.equalsIgnoreCase("N"))
-                                 break;
+                                break;
                         }
 
                         if(cantidad == Libreria.libreriasCreadas.get(libreria-1).getCantidadDelibrosMaxima()){
@@ -160,6 +165,11 @@ public class Principal {
 
                     
                      case 6:
+                            if(!librosAsignados){
+                                System.out.println("No se han asignado libros todavia");
+                                continue;
+                            }
+                            
                             System.out.println("Ingrese una palabra clave");
                                 String palabraClave = scan2.next();
 
@@ -178,6 +188,7 @@ public class Principal {
                             Libreria.borrarLibreria(libreria-1);
                             System.out.println("Se ha borrado la libreria exitosamente");
                             opciones = 0;
+                            break;
 
                     default:
                             System.out.println("Comando Incorrecto");
@@ -267,10 +278,9 @@ public class Principal {
         
         Scanner scan = new Scanner(System.in);
         
-        System.out.println("Seleccione usario\n\n" + "1: Usuario administrador\n\n" + "2: Usuario invitado");
+        System.out.print("1: Usuario administrador\n\n" + "2: Usuario invitado\n\n" + "Seleccione usuario: " );
         
         Usuario = scanInt();
-        
         while(Usuario >= 3 || Usuario <= 0){
             System.out.println("Valor incorrecto, eliga solo el 1 o el 2");
               
@@ -279,12 +289,12 @@ public class Principal {
         
         if(Usuario == 1){
             esAdmin = true;
-            System.out.println("Ha escogido usuario Administrador");
+            System.out.println("\nHa escogido usuario administrador\n");
         }
         else
-            System.out.println("Ha escogido usuario invitado");
+            System.out.println("\nHa escogido usuario invitado\n");
         
-               String opcionesDelPrograma = """
+               System.out.println("""
                                             -----------------------------------------------
                                                   Bienvenido al Sistema de BookShelfs
                                             -----------------------------------------------
@@ -296,34 +306,34 @@ public class Principal {
                                                2. Administrar Librerias
                                                3. Ver librerias.
                                             
-                                            -----------------------------------------------""";
+                                            -----------------------------------------------""");
 
-       System.out.println(opcionesDelPrograma);
+      
 
        int opcion1 = -1;
 
        while(opcion1 != 0){
 
-        System.out.println("\nEliga una opcion:"); 
+        System.out.print("\nEliga una opcion: "); 
         opcion1 = scanInt();
 
         switch (opcion1) {
 
             case 0:  // SALIR DEL SISTEMA ready... duh
-                System.out.println("Hasta pronto usuario");
+                System.out.println("\n\nHasta pronto usuario");
                 break;
 
             case 1: // CREAR LIBRERIA  ready 
                 
                 if(esAdmin){
-                    System.out.println("Pongale nombre a la libreria");
+                    System.out.print("\nPongale nombre a la libreria: ");
                     
                     nombre = scan.next();
                     Libreria libreria = new Libreria(nombre);  // CREA
                     Libreria.libreriasCreadas.add(libreria);
                     
                     
-                    System.out.println("\nCantidad limite de espacio 1\n\n" + "Para dejar de crear espacios escriba un numero negativo");
+                    System.out.print("\nPara dejar de crear espacios escriba un numero negativo" + "\n\nCantidad limite de espacio 1: ");
                     
                     int cantidadLimite = scanInt();
                     int i = 1;
@@ -331,47 +341,53 @@ public class Principal {
                     while(cantidadLimite > 0){
                         i++;
                         libreria.crearEspacioDeLibreria(cantidadLimite);
-                        System.out.println("Cantidad limite de espacio " + i);              // BLOQUE ENCARGADO DE AGREGAR ESPACIOS DE LIBRERIA
+                        System.out.print("Cantidad limite de espacio " + i + ": ");              // BLOQUE ENCARGADO DE AGREGAR ESPACIOS DE LIBRERIA
                         cantidadLimite = scanInt();
                     }
-                    System.out.println("Se han dejado de crear espacios"); 
+                    System.out.println("\n\nSe han dejado de crear espacios\n"); 
                         
                 }
                 else
-                    System.out.println("No se puede acceder a esta opcion");
+                    System.out.println("\n\nNo se puede acceder a esta opcion");
                     break;
                      
             case 2: // ADMINISTRAR LIBRERIAS
                 
-                if(esAdmin) // Solo los administrador pueden entrar a esta opcion, uso otra vez de el try catch para ArrayIndexOutofBounds
+                if(esAdmin && !Libreria.libreriasCreadas.isEmpty()) // Solo los administrador pueden entrar a esta opcion, uso otra vez de el try catch para ArrayIndexOutofBounds
                     administrarLibreria();
+                else if(Libreria.libreriasCreadas.isEmpty())
+                    System.out.println("\nNo existen librerias por administrar. porfavor cree primero algunas");
                 else
-                    System.out.println("No se puede acceder a esta opcion");
+                    System.out.println("\nNo se puede acceder a esta opcion");
+
                 break;
 
-            case 3: // Ver librerias. ready
-                System.out.println("\n"+Libreria.mostrarLibrerias());
-                System.out.println("\nSeleccion la libreria que quiere ver, digite un numero negativo para salir");
+            case 3:
+                
+                if(!Libreria.libreriasCreadas.isEmpty()){// Ver librerias. ready
+                    // Try catch para que no salga EL INNOMBRABLE al escoger un numero de una libreria que no existe.
+                    int opcion3 = -1;
 
-                    // Try catch para que no salga EL INNOMBRABLE arrayIndexOutOfBounds al escoger un numero de una libreria que no existe.
-                    int opcion3 = scanInt();
+                    while(opcion3 != 0){
+                        System.out.println("\n"+Libreria.mostrarLibrerias());
+                        System.out.print("\nSeleccion la libreria que quiere ver, digite 0 para salir: ");
 
-                    while(opcion3 > 0){
                         opcion3 = scanInt();
                         try{
-                            System.out.println(Libreria.libreriasCreadas.get(opcion3-1).mostrarLibreria());
+                            System.out.println("\n" + Libreria.libreriasCreadas.get(opcion3-1).mostrarLibreria());
                         }
-                        catch(Exception e){
-
-                            if(opcion3 < 0){
-                                System.out.println("Saliendo de Ver librerias...");
+                        catch(Exception e){                 
+                            if(opcion3 == 0){
+                                System.out.println("Saliendo de Ver librerias..."); 
                                 break;
                             }
-
                             System.out.println("No existe tal libreria, porfavor ingrese un numero valido");
                             continue;
                         }
                    }
+                }
+                else
+                    System.out.println("\nNo existen librerias para ver");
                 break;
                 
             default:
