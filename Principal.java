@@ -177,7 +177,6 @@ public class Principal {
                            break;
                         
                      case 7:
-
                             if(librosAsignados){
                                 System.out.println(Libreria.libreriasCreadas.get(libreria-1).mostrarLibrosAsignados());
                                 administarLibro(libreria-1);
