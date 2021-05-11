@@ -27,6 +27,7 @@ public class Principal {
     
     public  static void administrarLibreria(){
         boolean librosAsignados = false;
+        boolean librosPuestos = false;
         Scanner scan2 = new Scanner(System.in);
         int cantidad = 0;
         System.out.println("\n" + Libreria.mostrarLibrerias() + "\n");
@@ -90,6 +91,8 @@ public class Principal {
                         while(cantidad < Libreria.libreriasCreadas.get(libreria-1).getCantidadDelibrosMaxima()){
                             String titulo,autor,genero,respuesta;
 
+                            System.out.println("Cantidad de libros restante: " + (Libreria.libreriasCreadas.get(libreria-1).getCantidadDelibrosMaxima() - cantidad) + "\n");
+
                             System.out.println("Ingrese titulo");
                             titulo = scan2.next();
 
@@ -134,6 +137,7 @@ public class Principal {
                         if(librosAsignados){
                             Libreria.libreriasCreadas.get(libreria-1).ordenarPorTitulo();
                             System.out.println("Los libros han sido asignados a la libreria");
+                            librosPuestos = true;
                             break;
                         }
                         else
@@ -146,6 +150,7 @@ public class Principal {
                          if(librosAsignados){
                             Libreria.libreriasCreadas.get(libreria-1).ordenarPorAutor();
                             System.out.println("Los libros han sido asignados a la libreria");
+                            librosPuestos = true;
                             }
                         else
                            System.out.println("No se han asignado libros todavia");
@@ -157,6 +162,7 @@ public class Principal {
                          if(librosAsignados){
                             Libreria.libreriasCreadas.get(libreria-1).clasificarPorGenero();
                             System.out.println("Los libros han sido asignados a la libreria");
+                            librosPuestos = true;
                             }
                             else
                                 System.out.println("No se han asignado libros todavia");
@@ -165,7 +171,7 @@ public class Principal {
 
                     
                      case 6:
-                            if(!librosAsignados){
+                            if(!librosPuestos){
                                 System.out.println("No se han asignado libros todavia");
                                 continue;
                             }
@@ -354,7 +360,7 @@ public class Principal {
                 
                 if(esAdmin && !Libreria.libreriasCreadas.isEmpty()) // Solo los administrador pueden entrar a esta opcion, uso otra vez de el try catch para ArrayIndexOutofBounds
                     administrarLibreria();
-                else if(Libreria.libreriasCreadas.isEmpty())
+                else if(Libreria.libreriasCreadas.isEmpty() && esAdmin)
                     System.out.println("\nNo existen librerias por administrar. porfavor cree primero algunas");
                 else
                     System.out.println("\nNo se puede acceder a esta opcion");

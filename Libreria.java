@@ -84,7 +84,11 @@ public class Libreria {
     
     public String mostrarLibrosAsignados(){
         String info = "";
-        
+
+        if(librosAsignados.isEmpty())
+            return "No se han asignado libros";
+
+
         for(int i = 0; i<librosAsignados.size();i++)
             info += "("+ (i+1) + ")\n" + librosAsignados.get(i).toString() + "\n";
       
@@ -200,7 +204,6 @@ public class Libreria {
         
         return resultado;                       
     }
-    
     
     public void borrarLibro(int indiceLibro){
         
