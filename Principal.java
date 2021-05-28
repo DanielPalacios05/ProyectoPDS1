@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 public class Principal {
 
+   private static boolean librosAsignados = false;
+    private static boolean librosPuestos = false;
+
     public static int scanInt(){
         int num = 0;
         Scanner sc = new Scanner(System.in);
@@ -26,8 +29,6 @@ public class Principal {
     
     
     public  static void administrarLibreria(){
-        boolean librosAsignados = false;
-        boolean librosPuestos = false;
         Scanner scan2 = new Scanner(System.in);
         int cantidad = 0;
         System.out.println("\n" + Libreria.mostrarLibrerias() + "\n");
@@ -93,14 +94,14 @@ public class Principal {
 
                             System.out.println("Cantidad de libros restante: " + (Libreria.libreriasCreadas.get(libreria-1).getCantidadDelibrosMaxima() - cantidad) + "\n");
 
-                            System.out.println("Ingrese titulo");
-                            titulo = scan2.next();
+                            System.out.println("Ingrese titulo: ");
+                            titulo = scan2.nextLine();
 
-                            System.out.println("Ingrese autor");
-                            autor = scan2.next();
+                            System.out.println("Ingrese autor: ");
+                            autor = scan2.nextLine();
 
-                            System.out.println("Ingrese genero");
-                            genero = scan2.next();
+                            System.out.println("Ingrese genero: ");
+                            genero = scan2.nextLine();
 
                             if(titulo == "" || autor == "" || genero == ""){
                                 System.out.println("Datos de libro invalidos, porfavor ingreselos nuevamente");
@@ -113,11 +114,12 @@ public class Principal {
 
                             System.out.println("Desea añadir mas libros?\n" + "Y/N"); 
 
-                            respuesta = scan2.next();
+                            respuesta = scan2.nextLine();
 
                             while(!respuesta.equalsIgnoreCase("Y") && !respuesta.equalsIgnoreCase("N")){
                                 System.out.println("Respuesta invalida ponga solo Y o N");
-                                respuesta = scan2.next();
+                                respuesta = scan2.nextLine();
+                                scan2.close();
                             }
 
                             if(respuesta.equalsIgnoreCase("N"))
@@ -173,7 +175,7 @@ public class Principal {
                      case 6:
                             if(!librosPuestos){
                                 System.out.println("No se han asignado libros todavia");
-                                continue;
+                                break;
                             }
                             
                             System.out.println("Ingrese una palabra clave");
@@ -239,7 +241,7 @@ public class Principal {
             
             case 1:
                 System.out.println("Ingrese el titulo");
-                String titulo = scan3.next();
+                String titulo = scan3.nextLine();
 
                 Libreria.libreriasCreadas.get(libreria).ModificarTitulo(libro, titulo);
                 System.out.println("Titulo modificado");
@@ -247,7 +249,7 @@ public class Principal {
 
             case 2:
                 System.out.println("Ingrese el autor");
-                String autor = scan3.next();
+                String autor = scan3.nextLine();
 
                 Libreria.libreriasCreadas.get(libreria).ModificarAutor(libro, autor);
                 System.out.println("Autor modificado");
@@ -255,7 +257,7 @@ public class Principal {
 
             case 3:
                 System.out.println("Ingrese el genero");
-                String genero = scan3.next();
+                String genero = scan3.nextLine();
 
                 Libreria.libreriasCreadas.get(libreria).ModificarGenero(libro, genero);
                 System.out.println("Genero modificado");
@@ -333,7 +335,7 @@ public class Principal {
                 if(esAdmin){
                     System.out.print("\nPongale nombre a la libreria: ");
                     
-                    nombre = scan.next();
+                    nombre = scan.nextLine();
                     Libreria libreria = new Libreria(nombre);  // CREA
                     Libreria.libreriasCreadas.add(libreria);
                     
